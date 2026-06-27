@@ -1,42 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>E-Inventory</title>
 
-    <script src="https://unpkg.com/vue@3"></script>
-    <script src="https://unpkg.com/vue-router@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100">
 
-<div id="app">
-    <div class="p-10">
-        <h1 class="text-3xl font-bold mb-4">
+<div class="container mx-auto p-10">
+
+    <div class="bg-white shadow-lg rounded-lg p-6">
+
+        <h1 class="text-3xl font-bold mb-2">
             E-Inventory
         </h1>
 
-        <p>
+        <p class="text-gray-600 mb-6">
             Sistem Manajemen Inventaris Barang
         </p>
 
-        <hr class="my-4">
+        <div id="loginForm">
 
-        <h2 class="text-xl font-bold">
-            Login
-        </h2>
+            <h2 class="text-xl font-bold mb-4">
+                Login
+            </h2>
 
-        <p>Username : admin</p>
-        <p>Password : admin</p>
+            <input
+                type="text"
+                placeholder="Username"
+                class="border p-2 w-full mb-3"
+                id="username">
 
-        <button
-            onclick="alert('Login Berhasil')"
-            class="bg-blue-500 text-white px-4 py-2 rounded mt-4">
-            Login
-        </button>
+            <input
+                type="password"
+                placeholder="Password"
+                class="border p-2 w-full mb-3"
+                id="password">
+
+            <button
+                onclick="login()"
+                class="bg-blue-500 text-white px-4 py-2 rounded">
+                Login
+            </button>
+
+        </div>
+
+        <div id="dashboard" style="display:none;">
+
+            <h2 class="text-2xl font-bold mt-6 mb-4">
+                Dashboard
+            </h2>
+
+            <div class="grid grid-cols-2 gap-4 mb-6">
+
+                <div class="bg-blue-100 p-4 rounded">
+                    <h3 class="font-bold">Jumlah Barang</h3>
+                    <p class="text-2xl">10</p>
+                </div>
+
+                <div class="bg-green-100 p-4 rounded">
+                    <h3 class="font-bold">Jumlah Kategori</h3>
+                    <p class="text-2xl">3</p>
+                </div>
+
+            </div>
+
+            <h3 class="text-xl font-bold mb-3">
+                Data Barang
+            </h3>
+
+            <table class="table-auto border-collapse border border-gray-400 w-full">
+
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="border p-2">ID</th>
+                        <th class="border p-2">Nama Barang</th>
+                        <th class="border p-2">Stok</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="border p-2">1</td>
+                        <td class="border p-2">Laptop</td>
+                        <td class="border p-2">5</td>
+                    </tr>
+
+                    <tr>
+                        <td class="border p-2">2</td>
+                        <td class="border p-2">Printer</td>
+                        <td class="border p-2">2</td>
+                    </tr>
+
+                    <tr>
+                        <td class="border p-2">3</td>
+                        <td class="border p-2">Mouse</td>
+                        <td class="border p-2">10</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <button
+                onclick="logout()"
+                class="bg-red-500 text-white px-4 py-2 rounded mt-4">
+                Logout
+            </button>
+
+        </div>
+
     </div>
+
 </div>
+
+<script>
+
+function login() {
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if(username === "admin" && password === "admin") {
+
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+
+    } else {
+
+        alert("Username atau Password salah");
+
+    }
+}
+
+function logout() {
+
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("loginForm").style.display = "block";
+
+}
+
+</script>
 
 </body>
 </html>
